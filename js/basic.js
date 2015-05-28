@@ -1,4 +1,14 @@
-
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
 //显示灰色 jQuery 遮罩层
 function showBg(e) { 
     var bh = $("body").height(); 
@@ -82,4 +92,4 @@ var mousedown = function(){
 	mousedown_wait();
 	mousedown_login();
 };
-window.onload = mousedown;
+addLoadEvent(mousedown);
